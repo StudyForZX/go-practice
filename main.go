@@ -8,7 +8,8 @@ import (
 
 func main() {
 
-	res := ltmath.LengthOfLongestSubstring("xajlkhjghxkkhlahk3")
+	// res := ltmath.LengthOfLongestSubstring("xajlkhjghxkkhlahk3")
+	res := ltmath.MinWindows("ADOBECODEBANC", "ABC")
 
 	fmt.Println(res)
 

@@ -4,10 +4,33 @@ func LengthOfLongestSubstring(s string) string {
 
 	sLen := len(s)
 
+	var max int
+	var maxStr string
+
 	for i := 0; i < sLen; i++ {
 
+		var tmpMax int
+		var tmpArr []byte
+
+		item := s[i]
+
+		tmpMap := make(map[byte]int, sLen)
+
+		if 0 == tmpMap[item] {
+			tmpMap[item] = 1
+			tmpArr = append(tmpArr, item)
+		} else {
+			tmpMap[item] = 2
+			tmpMax = len(tmpArr)
+		}
+
+		if tmpMax > max {
+			max = tmpMax
+			maxStr = string(tmpArr)
+		}
 	}
 
+	return maxStr
 }
 
 // func LengthOfLongestSubstring(s string) string {
