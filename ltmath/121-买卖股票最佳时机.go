@@ -6,22 +6,17 @@ func LT121_MaxProfit(prices []int) int {
 		return 0
 	}
 
+	maxRes := 0
 	buy := prices[0]
-	max := 0
 
-	for i := 1; i < len(prices); i++ {
+	for _, price := range prices {
 
-		if prices[i] < buy {
-			buy = prices[i]
+		if price < buy {
+			buy = price
 		} else {
-			tmp := prices[i] - buy
-
-			if tmp > max {
-				max = tmp
-			}
+			maxRes = max(price-buy, maxRes)
 		}
-
 	}
 
-	return max
+	return maxRes
 }

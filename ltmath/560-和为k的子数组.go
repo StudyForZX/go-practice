@@ -1,41 +1,38 @@
 package ltmath
 
-/**
- * 暴力方式：得出所有子数组的索引，返回相加=k的数组的数量
- */
+func LT560_SubarraySumByPreSum(nums []int, k int) int {
 
-// func SubArraySum(nums []int, k int) int {
+	sum := 0
+	count := 0
+	preSumMap := map[int]int{}
+	preSumMap[0] = 1
 
-// 	count := 0
+	for _, num := range nums {
 
-// 	for start := 0; start < len(nums); start++ {
-// 		sum := 0
-// 		for end := start; end >= 0; end-- {
-// 			sum += nums[end]
-// 			if sum == k {
-// 				count++
-// 			}
-// 		}
-// 	}
+		sum += num
 
-// 	return count
-// }
-
-func SubArraySum(nums []int, k int) int {
-
-	count, preSum := 0, 0
-	numsMap := map[int]int{}
-	numsMap[0] = 1
-
-	for i := 0; i < len(nums); i++ {
-
-		preSum += nums[i]
-
-		if _, ok := numsMap[preSum-k]; ok {
-			count += numsMap[preSum-k]
+		if preSumMap[sum-k] > 0 {
+			count += preSumMap[sum-k]
 		}
 
-		numsMap[preSum]++
+		preSumMap[sum]++
+	}
+
+	return count
+}
+
+func LT560_SubarraySumByFor(nums []int, k int) int {
+
+	count := 0
+
+	for i := 0; i < len(nums); i++ {
+		sum := 0
+		for j := i; j >= 0; j-- {
+			sum += nums[j]
+			if sum == k {
+				count++
+			}
+		}
 	}
 
 	return count

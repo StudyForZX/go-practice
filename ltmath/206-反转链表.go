@@ -1,39 +1,19 @@
 package ltmath
 
 // 迭代反转链表
-// func LT206_ReverseListByFor(head *ListNode) *ListNode {
-
-// 	var pre *ListNode = nil
-// 	current := head
-
-// 	for current != nil {
-
-// 		next := current.Next
-
-// 		current.Next = pre
-
-// 		pre = current
-
-// 		current = next
-// 	}
-
-// 	return head
-
-// }
-
-// 迭代反转链表
 func LT206_ReverseListByFor(head *ListNode) *ListNode {
 
-	var current *ListNode
+	pre := &ListNode{}
+	tmp := head
 
-	for head != nil {
-		next := head.Next
-		head.Next = current
-		current = head
-		head = next
+	for tmp != nil {
+		next := tmp.Next
+		tmp.Next = pre
+		pre = tmp
+		tmp = next
 	}
 
-	return current
+	return pre
 }
 
 // 递归写法

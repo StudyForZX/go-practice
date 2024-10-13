@@ -2,8 +2,8 @@ package ltmath
 
 func LT21_MergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
 
-	head := &ListNode{}
-	prev := head
+	current := &ListNode{}
+	tmp := current
 
 	for list1 != nil && list2 != nil {
 
@@ -11,21 +11,23 @@ func LT21_MergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
 		v2 := list2.Val
 
 		if v1 > v2 {
-			prev.Next = list2
+			tmp.Next = list2
 			list2 = list2.Next
 		} else {
-			prev.Next = list1
+			tmp.Next = list1
 			list1 = list1.Next
 		}
 
-		prev = prev.Next
+		tmp = tmp.Next
 	}
 
 	if list1 == nil {
-		prev.Next = list2
-	} else {
-		prev.Next = list1
+		tmp.Next = list2
 	}
 
-	return head.Next
+	if list2 == nil {
+		tmp.Next = list1
+	}
+
+	return current.Next
 }

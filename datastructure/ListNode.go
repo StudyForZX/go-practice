@@ -26,6 +26,7 @@ func (ln *ListNode[T]) ArrayToListNode(arr []T) *ListNode[T] {
 }
 
 func (ln *ListNode[T]) ListNodeToArray() []T {
+
 	res := []T{}
 
 	for ln != nil {

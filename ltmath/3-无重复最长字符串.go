@@ -2,35 +2,34 @@ package ltmath
 
 func LT3_LengthOfLongestSubstring(s string) int {
 
-	length := 0
-	maxLen := 0
 	left := 0
 	right := 0
-	sMap := map[byte]int{}
+	maxLen := 0
+	length := 0
+	strMap := map[byte]bool{}
 
-	for right < len(s) {
+	sArr := []byte(s)
 
-		_, ok := sMap[s[right]]
+	for _, c := range sArr {
 
-		if !ok {
-			sMap[s[right]] = 1
-			length++
-			if length > maxLen {
-				maxLen = length
-			}
+		if !strMap[c] {
+
+			strMap[c] = true
 			right++
+			length++
+			maxLen = max(maxLen, length)
 
 		} else {
 
-			for _, ok := sMap[s[right]]; ok; _, ok = sMap[s[right]] {
-				delete(sMap, s[left])
+			for strMap[c] {
+				delete(strMap, sArr[left])
 				left++
 				length--
 			}
 
-			sMap[s[right]] = 1
-			length++
+			strMap[c] = true
 			right++
+			length++
 		}
 	}
 

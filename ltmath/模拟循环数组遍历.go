@@ -1,35 +1,60 @@
 package ltmath
 
-func MockArrayForeach(arr []int) [][]int {
+func MockArrayForeach(nums []int) [][]int {
 
-	arrLen := len(arr)
 	res := [][]int{}
+	tmp := make([]int, len(nums))
 
-	for i := 0; i < arrLen; i++ {
-		res = MockArrayForeachHandle(arr[0], arr[i], res)
+	var dfs func(index int)
+	dfs = func(index int) {
+
+		if index == len(nums) {
+			res = append(res, append([]int{}, tmp...))
+			return
+		}
+
+		for i := 0; i < nums[index]; i++ {
+			tmp[index] = i
+			dfs(index + 1)
+		}
+
 	}
+
+	dfs(0)
 
 	return res
 }
 
-func MockArrayForeachHandle(first int, max int, res [][]int) [][]int {
+// func MockArrayForeach(arr []int) [][]int {
 
-	tmp := [][]int{}
+// 	arrLen := len(arr)
+// 	res := [][]int{}
 
-	if len(res) < first {
+// 	for i := 0; i < arrLen; i++ {
+// 		res = MockArrayForeachHandle(arr[0], arr[i], res)
+// 	}
 
-		for i := 0; i < max; i++ {
-			tmp = append(tmp, []int{i})
-		}
+// 	return res
+// }
 
-	} else {
+// func MockArrayForeachHandle(first int, max int, res [][]int) [][]int {
 
-		for _, item := range res {
-			for i := 0; i < max; i++ {
-				tmp = append(tmp, append(item, i))
-			}
-		}
-	}
+// 	tmp := [][]int{}
 
-	return tmp
-}
+// 	if len(res) < first {
+
+// 		for i := 0; i < max; i++ {
+// 			tmp = append(tmp, []int{i})
+// 		}
+
+// 	} else {
+
+// 		for _, item := range res {
+// 			for i := 0; i < max; i++ {
+// 				tmp = append(tmp, append(item, i))
+// 			}
+// 		}
+// 	}
+
+// 	return tmp
+// }

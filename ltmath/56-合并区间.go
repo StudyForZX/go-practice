@@ -17,20 +17,13 @@ func LT56_Merge(intervals [][]int) [][]int {
 		start, end := intervals[i][0], intervals[i][1]
 
 		if len(res) == 0 || res[len(res)-1][1] < start {
+
 			res = append(res, []int{start, end})
+
 		} else {
 
-			if res[len(res)-1][0] > start {
-				minStart = start
-			} else {
-				minStart = res[len(res)-1][0]
-			}
-
-			if res[len(res)-1][1] > end {
-				maxEnd = res[len(res)-1][1]
-			} else {
-				maxEnd = end
-			}
+			minStart = min(res[len(res)-1][0], start)
+			maxEnd = max(res[len(res)-1][1], end)
 
 			res[len(res)-1] = []int{minStart, maxEnd}
 		}
