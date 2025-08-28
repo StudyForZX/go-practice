@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package calculator;
+
+option go_package = "./pb;pb";
+
+// 定义计算器服务
+service CalculatorService {
+  // 加法方法
+  rpc Add (AddRequest) returns (AddResponse);
+
+  // 乘法方法
+  rpc Multiply (MultiplyRequest) returns (MultiplyResponse);
+}
+
+// 加法请求消息
+message AddRequest {
+  int32 a = 1;
+  int32 b = 2;
+}
+
+// 加法响应消息
+message AddResponse {
+  int32 result = 1;
+}
+
+// 乘法请求消息
+message MultiplyRequest {
+  int32 a = 1;
+  int32 b = 2;
+}
+
+// 乘法响应消息
+message MultiplyResponse {
+  int32 result = 1;
+}
