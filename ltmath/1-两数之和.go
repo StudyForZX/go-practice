@@ -25,17 +25,19 @@ package ltmath
 
 func LT1_TwoSum(nums []int, target int) []int {
 
-	numsMap := map[int]int{}
+	numMap := map[int]int{}
 
-	for k, num := range nums {
-		if _, ok := numsMap[target-num]; ok {
-			return []int{numsMap[target-num], k}
-		}
-
-		numsMap[num] = k
+	for index, num := range nums {
+		numMap[num] = index
 	}
 
-	return nil
+	for _, num := range nums {
+		if _, ok := numMap[target-num]; ok {
+			return []int{numMap[num], numMap[target-num]}
+		}
+	}
+
+	return []int{}
 }
 
 // func LT1_TwoSum(nums []int, target int) []int {
