@@ -1,31 +1,41 @@
 package ltmath
 
-// 笨方法 转数组 看首尾是否相同
-func LT234_IsPalindrome(head *ListNode) bool {
+func LT234IsPalindromeByMyself(head *ListNode) bool {
 
-	arr := []int{}
-	tmp := head
-
-	for tmp != nil {
-		arr = append(arr, tmp.Val)
-		tmp = tmp.Next
+	if head == nil {
+		return true
 	}
 
-	i := 0
-	j := len(arr) - 1
-	res := true
+	vals := []int{}
 
-	for i < j {
+	for head != nil {
+		vals = append(vals, head.Val)
+		head = head.Next
+	}
 
-		if arr[i] == arr[j] {
-			i++
-			j--
-		} else {
-			res = false
-			break
+	left := 0
+	right := len(vals) - 1
+
+	for left < right {
+
+		if vals[left] != vals[right] {
+			return false
+		}
+
+		left++
+		right--
+
+		if left == right {
+			return true
 		}
 
 	}
 
-	return res
+	return true
+
 }
+
+// 递归实现
+// func LT234IsPalindromeByRecursion(head *ListNode) bool {
+
+// }

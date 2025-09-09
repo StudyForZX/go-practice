@@ -16,7 +16,7 @@ func Test_LT21_MergeTwoLists(t *testing.T) {
 	list1 = list1.ArrayToListNode([]int{1, 2, 4})
 	list2 = list2.ArrayToListNode([]int{1, 3, 4})
 
-	res := ltmath.LT21_MergeTwoLists(list1, list2)
+	res := ltmath.LT21MergeTwoListsByMyself(list1, list2)
 	resArr := res.ListNodeToArray()
 
 	if !reflect.DeepEqual(resArr, expected) {

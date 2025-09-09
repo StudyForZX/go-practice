@@ -1,16 +1,13 @@
 package ltmath
 
-func LT21_MergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
+func LT21MergeTwoListsByMyself(list1 *ListNode, list2 *ListNode) *ListNode {
 
-	current := &ListNode{}
-	tmp := current
+	newList := &ListNode{}
+
+	tmp := newList
 
 	for list1 != nil && list2 != nil {
-
-		v1 := list1.Val
-		v2 := list2.Val
-
-		if v1 > v2 {
+		if list1.Val >= list2.Val {
 			tmp.Next = list2
 			list2 = list2.Next
 		} else {
@@ -21,13 +18,14 @@ func LT21_MergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
 		tmp = tmp.Next
 	}
 
-	if list1 == nil {
-		tmp.Next = list2
-	}
-
-	if list2 == nil {
+	if list1 != nil {
 		tmp.Next = list1
 	}
 
-	return current.Next
+	if list2 != nil {
+		tmp.Next = list2
+	}
+
+	return newList.Next
+
 }

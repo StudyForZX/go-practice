@@ -5,18 +5,16 @@ package udfsort
 // 稳定
 func BubbleSort(nums []int) []int {
 
-	if len(nums) < 2 {
+	numsLen := len(nums)
+	if numsLen < 2 {
 		return nums
 	}
 
-	for i := 0; i < len(nums); i++ {
-
-		for j := 0; j < len(nums)-1-i; j++ {
-
-			if nums[j] > nums[j+1] {
-				nums[j], nums[j+1] = nums[j+1], nums[j]
+	for i := range numsLen {
+		for j := i + 1; j < numsLen; j++ {
+			if nums[i] > nums[j] {
+				nums[i], nums[j] = nums[j], nums[i]
 			}
-
 		}
 	}
 

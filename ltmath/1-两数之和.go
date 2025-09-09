@@ -25,16 +25,16 @@ package ltmath
 
 func LT1_TwoSum(nums []int, target int) []int {
 
-	numMap := map[int]int{}
+	numsMap := map[int]int{}
 
-	for index, num := range nums {
-		numMap[num] = index
-	}
+	for i, num := range nums {
 
-	for _, num := range nums {
-		if _, ok := numMap[target-num]; ok {
-			return []int{numMap[num], numMap[target-num]}
+		diff := target - num
+		if j, ok := numsMap[diff]; ok {
+			return []int{j, i}
 		}
+
+		numsMap[num] = i
 	}
 
 	return []int{}

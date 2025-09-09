@@ -1,27 +1,31 @@
 package ltmath
 
 // 使用map逐一对比
-func LT160_GetIntersectionNode_Hash(headA, headB *ListNode) *ListNode {
+func LT160GetIntersectionNodeByMyself(headA, headB *ListNode) *ListNode {
 
-	headAMap := map[*ListNode]bool{}
+	mapHead := map[*ListNode]struct{}{}
 
 	for headA != nil {
-		headAMap[headA] = true
+
+		mapHead[headA] = struct{}{}
+
 		headA = headA.Next
+
 	}
 
 	for headB != nil {
-		if _, ok := headAMap[headB]; ok {
+		if _, ok := mapHead[headB]; ok {
 			return headB
 		}
-
 		headB = headB.Next
 	}
 
 	return nil
+
 }
 
-func LT160_GetIntersectionNode_DoublePointer(headA, headB *ListNode) *ListNode {
+// 双指针，如果不相交，则最后都为nil，退出
+func LT160GetIntersectionNodeByDoublePointer(headA, headB *ListNode) *ListNode {
 
 	lA, lB := headA, headB
 

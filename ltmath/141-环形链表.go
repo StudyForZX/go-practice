@@ -1,20 +1,22 @@
 package ltmath
 
-func LT141_HasCycleByHash(head *ListNode) bool {
+func LT141HasCycleByMyself(head *ListNode) bool {
 
-	m := map[*ListNode]bool{}
+	listPointMap := map[*ListNode]struct{}{}
 
 	for head != nil {
 
-		if m[head] {
+		if _, ok := listPointMap[head]; ok {
 			return true
 		}
 
-		m[head] = true
+		listPointMap[head] = struct{}{}
+
 		head = head.Next
 	}
 
 	return false
+
 }
 
 func LT141_HasCycleByStep(head *ListNode) bool {

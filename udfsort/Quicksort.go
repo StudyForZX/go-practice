@@ -1,5 +1,9 @@
 package udfsort
 
+// 时间复杂度 平均 O(nlogn) 最好O(n) 最坏O(n²)
+// 空间复杂度 O(1)
+// 稳定
+
 // 以切片方式 空间利用率低
 func QuickSort(nums []int) []int {
 
@@ -20,7 +24,7 @@ func partition(nums []int) int {
 	pivot := len(nums) - 1
 	middle := 0
 
-	for i := 0; i < pivot; i++ {
+	for i := range pivot {
 		// 这里控制排序的顺序
 		if nums[i] < nums[pivot] {
 			nums[i], nums[middle] = nums[middle], nums[i]
