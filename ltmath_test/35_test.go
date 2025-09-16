@@ -12,7 +12,7 @@ func Test_LT35_SearchInsertByFor(t *testing.T) {
 	target := 5
 	expected := 2
 
-	res := ltmath.LT35_SearchInsertByFor(nums, target)
+	res := ltmath.LT35SearchInsertByMyself(nums, target)
 
 	if expected != res {
 		t.Errorf("excepted %d, got %d", expected, res)

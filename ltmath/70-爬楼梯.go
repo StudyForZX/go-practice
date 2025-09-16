@@ -1,40 +1,30 @@
 package ltmath
 
 // 递归
-func LT70_ClimbStairsByRecursion(n int) int {
-
-	res := 0
-
-	for i := 1; i <= n; i++ {
-		res = climbStair(n)
-	}
-
-	return res
+func LT70ClimbStairsByMyselfWithRecursion(n int) int {
+	return climbStair(n)
 }
 
 func climbStair(n int) int {
+	if n == 0 {
+		return 0
+	}
 
 	if n == 1 {
 		return 1
-	}
-
-	if n == 2 {
-		return 2
 	}
 
 	return climbStair(n-1) + climbStair(n-2)
 }
 
 // 循环
-func LT70_ClimbStairsByFor(n int) int {
+func LT70ClimbStairsByMyselfWithFor(n int) int {
 
 	x := 0
 	y := 1
 
-	for i := 0; i < n; i++ {
-
-		x, y = x+y, x
-
+	for range n {
+		x, y = y, x+y
 	}
 
 	return x

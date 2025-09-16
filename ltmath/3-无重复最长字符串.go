@@ -1,37 +1,41 @@
 package ltmath
 
-func LT3_LengthOfLongestSubstring(s string) int {
+func LT3LengthOfLongestSubstring(s string) int {
 
+	length := 0
+	maxLength := 0
 	left := 0
 	right := 0
-	maxLen := 0
-	length := 0
-	strMap := map[byte]bool{}
+	charMap := make(map[rune]struct{}, len(s))
 
-	sArr := []byte(s)
+	for _, c := range s {
 
-	for _, c := range sArr {
+		if _, ok := charMap[c]; !ok {
 
-		if !strMap[c] {
-
-			strMap[c] = true
+			charMap[c] = struct{}{}
 			right++
 			length++
-			maxLen = max(maxLen, length)
+			maxLength = max(maxLength, length)
 
 		} else {
 
-			for strMap[c] {
-				delete(strMap, sArr[left])
-				left++
-				length--
+			for {
+				if _, ok := charMap[c]; ok {
+					delete(charMap, rune(s[left]))
+					length--
+					left++
+				} else {
+					break
+				}
 			}
 
-			strMap[c] = true
+			charMap[c] = struct{}{}
 			right++
 			length++
 		}
+
 	}
 
-	return maxLen
+	return maxLength
+
 }

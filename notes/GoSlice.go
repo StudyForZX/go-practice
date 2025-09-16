@@ -19,7 +19,7 @@ func GoSliceNotes() {
 	// 切片类型的声明方式与数组有一些相似，不过由于切片的长度是动态的，
 	// 所以声明时只需要指定切片中的元素类型
 	s1 := []int{}
-	s2 := []interface{}{}
+	s2 := []any{}
 
 	fmt.Println(s1, s2)
 
@@ -43,4 +43,25 @@ func GoSliceNotes() {
 
 	// 切片拷贝
 	copy([]int{}, s3)
+
+	// 切片特性 https://golang.design/go-questions/slice/vs-array/
+	slice := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+	slice1 := slice[2:5]    // 2, 3, 4, ｜ 5, 6, 7, 8, 9
+	slice2 := slice1[2:6:7] // 4, 5, 6, 7, | 8
+
+	slice2 = append(slice2, 100) // 4, 5, 6, 7, 100
+	// 这里会修改slice为 []int{0, 1, 2, 3, 4, 5, 6, 7, 100, 9}
+	// 这里会修改slice1为 // 2, 3, 4, ｜ 5, 6, 7, 100, 9
+	// 👆
+
+	slice2 = append(slice2, 200) // 4, 5, 6, 7, 100, 200 | new 容量重新计算 与之前引用不同
+
+	slice1[2] = 20
+	// 这里会修改slice为 []int{0, 1, 2, 3, 20, 5, 6, 7, 100, 9}
+	// 这里会修改slice1为 // 2, 3, 20, ｜ 5, 6, 7, 100, 9
+	// 👆
+
+	fmt.Println(slice1) // []int{2, 3, 20}
+	fmt.Println(slice2) // []int{4, 5, 6, 7, 100, 200}
+	fmt.Println(slice)  // []int{0, 1, 2, 3, 20, 5, 6, 7, 100, 9}
 }

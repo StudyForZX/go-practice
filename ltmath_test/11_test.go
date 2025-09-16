@@ -6,12 +6,13 @@ import (
 	"github.com/studyforzx/lt/ltmath"
 )
 
-func Test_LT3_LengthOfLongestSubstring(t *testing.T) {
+func TestLT11MaxAreaByMyself(t *testing.T) {
 
-	s := "abcabcbb"
-	expected := 3
+	nums := []int{1, 8, 6, 2, 5, 4, 8, 3, 7}
 
-	res := ltmath.LT3LengthOfLongestSubstring(s)
+	expected := 49
+
+	res := ltmath.LT11MaxAreaByMyself(nums)
 
 	if res != expected {
 		t.Errorf("expected %d, got %d", expected, res)

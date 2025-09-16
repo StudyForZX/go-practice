@@ -20,9 +20,10 @@ func Convert(s string, numRows int) string {
 			index--
 		}
 
-		if index == numRows-1 {
+		switch index {
+		case numRows - 1:
 			down = false
-		} else if index == 0 {
+		case 0:
 			down = true
 		}
 

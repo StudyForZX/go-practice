@@ -2,21 +2,21 @@ package ltmath
 
 import "sort"
 
-func LT49_GroupAnagrams(strs []string) [][]string {
+func LT49GroupAnagramsByMyself(strs []string) [][]string {
 
-	mp := map[string][]string{}
+	res := [][]string{}
+	resMap := map[string][]string{}
 
 	for _, str := range strs {
-		s := []byte(str)
-		sort.Slice(s, func(i, j int) bool { return s[i] < s[j] })
-		sortedStr := string(s)
-		mp[sortedStr] = append(mp[sortedStr], str)
+		runes := []rune(str)
+		sort.Slice(runes, func(i, j int) bool { return int(runes[i]) < int(runes[j]) })
+		resMap[string(runes)] = append(resMap[string(runes)], str)
 	}
 
-	ans := make([][]string, 0, len(mp))
-	for _, v := range mp {
-		ans = append(ans, v)
+	for _, v := range resMap {
+		res = append(res, v)
 	}
 
-	return ans
+	return res
+
 }

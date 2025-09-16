@@ -1,6 +1,22 @@
 package ltmath
 
-func LT35_SearchInsertByFor(nums []int, target int) int {
+func LT35SearchInsertByMyself(nums []int, target int) int {
+
+	for index, num := range nums {
+
+		if num < target {
+			continue
+		}
+
+		return index
+
+	}
+
+	return len(nums)
+
+}
+
+func LT35SearchInsertByFor(nums []int, target int) int {
 
 	left := 0
 	right := len(nums) - 1
