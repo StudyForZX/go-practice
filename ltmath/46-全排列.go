@@ -1,34 +1,35 @@
 package ltmath
 
-func LT46_Permute(nums []int) [][]int {
+func LT46Permute(nums []int) [][]int {
 
 	res := [][]int{}
-	combine := []int{}
-	used := map[int]bool{}
+	tmp := []int{}
+	numsMap := make(map[int]bool, len(nums))
 
-	var dfs func(index int)
-	dfs = func(index int) {
+	var dfs func()
+	dfs = func() {
+
+		if len(nums) == len(tmp) {
+			res = append(res, append([]int{}, tmp...))
+			return
+		}
 
 		for _, num := range nums {
 
-			if index == len(nums) {
-				res = append(res, append([]int{}, combine...))
-				return
-			}
-
-			if !used[num] {
-				combine = append(combine, num)
-				used[num] = true
-				dfs(index + 1)
-				used[num] = false
-				combine = combine[:len(combine)-1]
+			if !numsMap[num] {
+				tmp = append(tmp, num)
+				numsMap[num] = true
+				dfs()
+				numsMap[num] = false
+				tmp = tmp[:len(tmp)-1]
 			}
 
 		}
 
 	}
 
-	dfs(0)
+	dfs()
 
 	return res
+
 }

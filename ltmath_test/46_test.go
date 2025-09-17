@@ -18,7 +18,7 @@ func Test_LT46_Permute(t *testing.T) {
 		{3, 2, 1},
 	}
 
-	res := ltmath.LT46_Permute(nums)
+	res := ltmath.LT46Permute(nums)
 
 	if !reflect.DeepEqual(res, expected) {
 		t.Errorf("expected %v, got %v", expected, res)
