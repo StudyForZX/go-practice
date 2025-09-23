@@ -8,7 +8,7 @@ import (
 func PrintInAlternationByFor() {
 	n := 26
 
-	for i := 0; i < n; i++ {
+	for i := range n {
 
 		fmt.Print(string('a' + rune(i)))
 
@@ -28,15 +28,12 @@ func PrintInAlternationBySync() {
 	go func() {
 		defer wg.Done()
 		for letter := 'A'; letter <= 'Z'; letter++ {
-			select {
-			case <-letterCN:
-				fmt.Print(string(letter))
-				numberCN <- true
-			}
+			<-letterCN
+			fmt.Print(string(letter))
+			numberCN <- true
 		}
 
 		close(letterCN)
-
 	}()
 
 	// 启动打印数字的goroutine
@@ -44,14 +41,11 @@ func PrintInAlternationBySync() {
 	go func() {
 		defer wg.Done()
 		for i := 1; i <= 26; i++ {
-			select {
-			case <-numberCN:
-				fmt.Print(i)
+			<-numberCN
+			fmt.Print(i)
 
-				if i != 26 {
-					letterCN <- true
-				}
-
+			if i != 26 {
+				letterCN <- true
 			}
 		}
 		close(numberCN)
@@ -62,7 +56,3 @@ func PrintInAlternationBySync() {
 
 	wg.Wait()
 }
-
-// func printLetter(wg *sync.WaitGroup, letterCN chan rune, doneCH bool) {
-
-// }
