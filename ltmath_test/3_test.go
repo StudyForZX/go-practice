@@ -8,7 +8,13 @@ import (
 
 func Test_LT3_LengthOfLongestSubstring(t *testing.T) {
 
-	s := "abcabcbb"
+	// s := "abcabcbb"
+	// expected := 3
+
+	// s := "bbbbb"
+	// expected := 1
+
+	s := "pwwkew"
 	expected := 3
 
 	res := ltmath.LT3LengthOfLongestSubstring(s)

@@ -6,36 +6,48 @@ func LT3LengthOfLongestSubstring(s string) int {
 	maxLength := 0
 	left := 0
 	right := 0
-	charMap := make(map[rune]struct{}, len(s))
+	charMap := make(map[rune]bool, len(s))
 
 	for _, c := range s {
 
-		if _, ok := charMap[c]; !ok {
-
-			charMap[c] = struct{}{}
+		if !charMap[c] {
+			charMap[c] = true
 			right++
 			length++
 			maxLength = max(maxLength, length)
-
 		} else {
-
-			for {
-				if _, ok := charMap[c]; ok {
-					delete(charMap, rune(s[left]))
-					length--
-					left++
-				} else {
-					break
-				}
+			for charMap[c] {
+				charMap[rune(s[left])] = false
+				length--
+				left++
 			}
-
-			charMap[c] = struct{}{}
+			charMap[c] = true
 			right++
 			length++
 		}
-
 	}
 
 	return maxLength
+
+}
+
+func LT3LengthOfLongestSubstring2(s string) int {
+
+	left := 0
+	maxLen := 0
+	charMap := make(map[rune]int)
+
+	for i, char := range s {
+
+		if lastIndex, exists := charMap[char]; exists && lastIndex >= left {
+			left = lastIndex + 1
+		}
+
+		charMap[char] = i
+
+		maxLen = max(maxLen, i-left+1)
+	}
+
+	return maxLen
 
 }
