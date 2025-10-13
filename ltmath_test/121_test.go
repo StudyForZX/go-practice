@@ -12,7 +12,7 @@ func Test_LT121_MaxProfit(t *testing.T) {
 
 	expected := 5
 
-	res := ltmath.LT121_MaxProfit(prices)
+	res := ltmath.LT121MaxProfit(prices)
 
 	if res != expected {
 		t.Errorf("expected %v, got %v", expected, res)

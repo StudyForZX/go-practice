@@ -1,6 +1,6 @@
 package ltmath
 
-func LT121_MaxProfit(prices []int) int {
+func LT121MaxProfit(prices []int) int {
 
 	if len(prices) < 2 {
 		return 0
