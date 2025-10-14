@@ -17,7 +17,7 @@ AS
 (
   SELECT
     drl.role_id,
-    drl.login_date，
+    drl.login_date,
     rc.create_date,
     DATEDIFF(drl.login_date, rc.create_date) AS diff
   FROM
